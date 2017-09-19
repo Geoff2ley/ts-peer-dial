@@ -56,6 +56,18 @@ class InternetImpl implements peer.App {
     }
 }
 
+class SteamImpl implements peer.App {
+    name: string = "Game";
+    state: string = "stopped";
+    allowStop: boolean = true;
+    pid: string;
+
+    launch(launchData: string): void {
+        //Open steam game here.
+        opn(launchData);
+    }
+}
+
 const app = new YoutubeImpl();
 const netflix = new NetflixImpl();
 const internet = new InternetImpl();
