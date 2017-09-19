@@ -4,7 +4,7 @@ import * as peer from "peer-dial";
 import * as express from 'express';
 import * as opn from 'opn';
 import * as http from 'http';
-import { ChildProcess } from 'child_process';
+import * as cp from "child_process";
 
 var PORT = 3000;
 var MANUFACTURER = "Fraunhofer FOKUS";
@@ -42,13 +42,17 @@ class InternetImpl implements peer.App {
     allowStop: boolean = true;
     pid: string;
 
-    private cp : ChildProcess;
+    private cp : cp.ChildProcess;
+    private promise : any;
 
     launch(launchData: string): void {
         if(this.cp){
             this.cp.kill();
         }
-        this.cp = opn(launchData);
+        this.promise = opn(launchData);
+        this.promise.then((e : cp.ChildProcess) => {
+            this.cp = e;
+        });
     }
 }
 
@@ -62,6 +66,8 @@ class DelegateImpl implements peer.Delegate {
             return app;
         } else if (appName === netflix.name){
             return netflix;
+        } else if (appName === internet.name){
+            return internet;
         }
         return app; //Use youtube by default. I hate npes.
     }
