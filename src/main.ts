@@ -2,7 +2,6 @@
 
 import * as peer from "peer-dial";
 import * as express from 'express';
-import * as opn from 'opn';
 import * as http from 'http';
 import * as cp from "child_process";
 
@@ -29,9 +28,11 @@ class NetflixImpl implements peer.App {
     allowStop: boolean = true;
     pid: string;
     launch(launchData: string): void {
+        //../../../src/platform/qt/netflix
+        const netflixApp = "netflix://";
+        opn(netflixApp+launchData);
         console.log('The launch data was: ' + launchData);
 
-        opn("http://www.netflix.com/source_type=12&" + launchData);
         // opn("https://www.netflix.com/watch/80004167?trackId=14170286&tctx=1%2C0%2C4f45da75-9e0e-4626-b2de-f22f302000a8-59489809");
     }
 }
