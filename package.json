@@ -12,10 +12,12 @@
   "dependencies": {
     "http": "0.0.0",
     "opn": "^5.1.0",
-    "peer-dial": "file:///C:\\Users\\James\\git\\dial\\peer-dial"
+    "peer-dial": "0.0.8"
   },
   "devDependencies": {
+    "@types/opn": "^5.1.0",
     "@types/node": "^8.0.28",
+    "@types/peer-dial": "0.0.0",
     "husky": "^0.14.3",
     "typescript": "^2.5.2"
   }
